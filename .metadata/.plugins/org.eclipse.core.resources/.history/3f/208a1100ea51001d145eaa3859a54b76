@@ -1,0 +1,23 @@
+package com.ilp.assignment1;
+
+import java.util.Scanner;
+
+public class WordCount17 {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter any String");
+		String inputString = scanner.nextLine();
+		int wordCount = 0;
+		if (inputString.isEmpty())
+			System.out.println("String is empty");
+		else {
+			String[] wordArray = inputString.split("\\s+");
+			System.out.println("The number of words in the string is\n" + wordArray.length);
+		}
+		// TODO Auto-generated method stub
+
+	}
+
+}

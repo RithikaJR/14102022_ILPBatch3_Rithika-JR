@@ -1,0 +1,24 @@
+package com.ilp.assignment1;
+
+public class Snippet {
+	for (Product product : productList) {
+										if (product.getProductName().equalsIgnoreCase("Savings Max Account")) {
+	
+											accountList.add((Account) product);
+	
+										}
+									}
+									System.out.println(
+											"Savings Max Account created successfully and account is active!!\nYou have the following services:\n");
+									for (Product product : productList) {
+										if (product.getProductName().equalsIgnoreCase("Savings Max Account")) {
+											for (Service service : product.getServiceList()) {
+												System.out.println(service.getServiceName());
+											}
+										}
+	
+									}
+								
+							
+}
+

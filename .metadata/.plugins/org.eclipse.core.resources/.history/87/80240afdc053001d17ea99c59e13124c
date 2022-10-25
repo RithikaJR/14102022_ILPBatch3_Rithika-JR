@@ -1,0 +1,28 @@
+
+
+import java.io.FileNotFoundException;
+
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+public class PdfGeneration {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		
+			String path = "Desktop";
+			PdfWriter pdfwriter = new PdfWriter(path);
+
+			PdfDocument pdfdocument = new PdfDocument(pdfwriter);
+			pdfdocument.setDefaultPageSize(PageSize.A4);
+			Document document = new Document(pdfdocument);
+			document.add(new Paragraph("Hello"));
+			document.close();
+		
+		// TODO Auto-generated method stub
+
+	}
+
+}

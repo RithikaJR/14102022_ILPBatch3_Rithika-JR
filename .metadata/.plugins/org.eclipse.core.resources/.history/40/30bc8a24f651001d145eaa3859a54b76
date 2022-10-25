@@ -1,0 +1,29 @@
+package com.ilp.assignment1;
+
+import java.util.Scanner;
+
+public class BasicProgrammingQuestion3 {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter range of the series");
+		int rangeVariable = scanner.nextInt();
+		int valueTracker = 1;
+		int positionTracker = 1;
+		int seriesSum = 0;
+		for (int count = 1; count <= rangeVariable; count++) {
+			if (positionTracker % 2 == 0)
+				seriesSum = seriesSum - valueTracker;
+			else
+				seriesSum = seriesSum + valueTracker;
+			valueTracker += 2;
+			positionTracker += 1;
+
+		}
+		System.out.println("Sum of series is:" + seriesSum);
+		// TODO Auto-generated method stub
+
+	}
+
+}

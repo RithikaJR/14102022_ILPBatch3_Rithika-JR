@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.security.Provider.Service"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.experion.entity.Card"/>
+    <fullyQualifiedTypeName name="usecasesolcom.bank.entity.Service"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.util.Formatter"/>
+    <fullyQualifiedTypeName name="com.itextpdf.kernel.geom.PageSize"/>
+    <fullyQualifiedTypeName name="org.w3c.dom.Document"/>
+    <fullyQualifiedTypeName name="com.itextpdf.kernel.pdf.PdfWriter"/>
+    <fullyQualifiedTypeName name="com.itextpdf.kernel.pdf.PdfDocument"/>
+    <fullyQualifiedTypeName name="com.itextpdf.layout.element.Paragraph"/>
+    <fullyQualifiedTypeName name="com.itextpdf.io.exceptions.IOException"/>
+    <fullyQualifiedTypeName name="com.itextpdf.layout.Document"/>
+    <fullyQualifiedTypeName name="com.itextpdf.kernel.colors.ColorConstants"/>
+    <fullyQualifiedTypeName name="com.itextpdf.layout.element.Table"/>
+</qualifiedTypeNameHistroy>

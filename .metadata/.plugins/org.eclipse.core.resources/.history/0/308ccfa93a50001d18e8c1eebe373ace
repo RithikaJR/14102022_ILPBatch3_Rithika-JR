@@ -1,0 +1,67 @@
+package com.experion.entity;
+
+import com.experion.service.AccountCardService;
+
+public abstract class Account  implements AccountCardService {
+	
+    private String accountName;
+	private String accountNumber;
+	private double accountBalance;
+	
+	public Account(String accountName, String accountNumber, double accountBalance) {
+		
+		this.accountName = accountName;
+		this.accountNumber = accountNumber;
+		this.accountBalance = accountBalance;
+	}
+	
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public double getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	@Override
+	public void checkBalance() {
+		
+		System.out.println("Check Balance");
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void cashWithdraw() {
+		
+		System.out.println("Withdraw Cash");
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+
+
+
+
+	
+
+	
+
+}

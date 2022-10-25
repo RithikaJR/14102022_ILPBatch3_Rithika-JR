@@ -1,0 +1,50 @@
+package com.experion.utility;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.experion.entity.Customer;
+
+public class BankUtility {
+
+	public static void main(String[] args) {
+		/*
+		 * Account account = new Account("Women Savings Bank", "ACC1987761", 10000);
+		 * AccountService accountService = new AccountService();
+		 * accountService.depositCash(account, 10000);
+		 * accountService.depositCash(account, 10000, "rty5776");
+		 * accountService.depositCash(account, "rty.com", 10000);
+		 *
+		 */
+		
+		
+		Customer customer = null;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("   $$$$$$ Welcome to RBS Banking Services $$$$$$   ");
+		System.out.println("Please make your choice\n1.Create Account\n2.Manage Account\n3.Exit");
+		int choice = scanner.nextInt();
+		switch (choice) {
+		case 1:
+			System.out.println(
+					"We offer the following types of accounts:\n1.Savings Max Account\n2.Current Account\n3.Loan Account\n4.To know more about each account");
+			int choiceOne=scanner.nextInt();
+			switch(choiceOne)
+			{
+			case 1:System.out.println("Enter an id of your choice and your name");
+			       String customerId=scanner.nextLine();
+			       String customerName=scanner.nextLine();
+			       customer=new Customer(customerId,customerName,"Savings Max Account");
+			}
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+
+		}
+
+	}
+}

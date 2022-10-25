@@ -1,0 +1,10 @@
+package com.ilp.basicprogrammingassignment;
+public class UUID {
+
+	public static void main(String[] args) {
+		String uuid=UUID.randomUUID().toString();
+		// TODO Auto-generated method stub
+
+	}
+
+}

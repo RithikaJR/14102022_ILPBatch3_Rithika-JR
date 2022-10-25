@@ -1,0 +1,218 @@
+package com.bank.service;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Formatter;
+
+import com.bank.entity.Account;
+import com.bank.entity.Customer;
+import com.bank.entity.Product;
+import com.bank.entity.Service;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+public class BankService {
+
+	public static ArrayList<Service> createServices() {
+
+		ArrayList<Service> allServiceList = new ArrayList<Service>();
+		allServiceList.add(new Service("Mobile Banking"));
+		allServiceList.add(new Service("ATM Withdrawal"));
+		allServiceList.add(new Service("Cash Deposit"));
+		allServiceList.add(new Service("Cheque Deposit"));
+		allServiceList.add(new Service("Online Banking"));
+
+		return allServiceList;
+
+	}
+
+	public static ArrayList<Product> createProducts(ArrayList<Service> allServiceList) {
+
+		ArrayList<Product> productList = new ArrayList<Product>();
+		productList.add(createSavingsMaxAccount(allServiceList));
+		productList.add(createCurrentAccount(allServiceList));
+		productList.add(createLoanAccount(allServiceList));
+
+		return productList;
+
+	}
+
+	private static Product createLoanAccount(ArrayList<Service> allServiceList) {
+
+		ArrayList<Service> loanServiceList = new ArrayList<Service>();
+		for (Service service : allServiceList) {
+			if ((service.getServiceName().compareTo("Cash Deposit") == 0)
+					|| (service.getServiceName().compareTo("Cheque Deposit") == 0)) {
+				loanServiceList.add(service);
+			}
+		}
+		Product product = new Account("PRDLOAN100", "Loan Account", loanServiceList, 10000);
+		return product;
+
+	}
+
+	private static Product createCurrentAccount(ArrayList<Service> allServiceList) {
+
+		ArrayList<Service> currentServiceList = new ArrayList<Service>();
+		for (Service service : allServiceList) {
+			if ((service.getServiceName().compareTo("Cash Deposit") == 0)
+					|| (service.getServiceName().compareTo("ATM Withdrawal") == 0)
+					|| (service.getServiceName().compareTo("Online Banking") == 0)
+					|| (service.getServiceName().compareTo("Mobile Banking") == 0)) {
+				currentServiceList.add(service);
+			}
+		}
+		Product product = new Account("PRDCRRNT50", "Current Account", currentServiceList, 5000);
+		return product;
+
+	}
+
+	private static Product createSavingsMaxAccount(ArrayList<Service> allServiceList) {
+		ArrayList<Service> savingsMaxServiceList = new ArrayList<Service>();
+		for (Service service : allServiceList) {
+			if ((service.getServiceName().compareTo("Cash Deposit") == 0)
+					|| (service.getServiceName().compareTo("ATM Withdrawal") == 0)
+					|| (service.getServiceName().compareTo("Online Banking") == 0)) {
+				savingsMaxServiceList.add(service);
+			}
+		}
+		Product product = new Account("PRDSMX1000", "Savings Max Account", savingsMaxServiceList, 7000);
+		return product;
+
+	}
+
+	public static void displayCustomerDetails(Customer customer) {
+		if (customer != null) {
+			Formatter formatt = new Formatter();
+			formatt.format("%15s %15s %20s %20s\n", "Customer Name", "Customer Id", "Account Type", "Account Balance");
+
+			for (Account account : customer.getAccountList()) {
+				formatt.format("%15s %15s %22s %20s\n", customer.getCustomerName(),
+						customer.getCustomerId().toUpperCase(), account.getProductName(), account.getAccountBalance());
+			}
+			System.out.println(formatt);
+		} else
+			System.out.println("No accounts to display!");
+
+	}
+
+	public static void depositMoney(double customerAmount, Customer customer, String customerChoice) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase(customerChoice)) {
+
+				account.setAccountBalance(account.getAccountBalance() + customerAmount);
+				System.out.println("Account Balance is:" + account.getAccountBalance());
+			}
+		}
+
+	}
+
+	public static void withdrawMoney(double customerAmount, Customer customer, String customerChoice) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase(customerChoice)) {
+				if (customerAmount <= account.getAccountBalance()) {
+					account.setAccountBalance(account.getAccountBalance() - customerAmount);
+					System.out.println("Account Balance is:" + account.getAccountBalance());
+				} else
+					System.out.println("Insufficient balance.Cannot withdraw amount");
+			}
+		}
+
+	}
+
+	public static void loanPrinciple(double customerAmount, Customer customer) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase("Loan Account")) {
+
+				account.setAccountBalance(account.getAccountBalance() - customerAmount);
+				System.out.println("Pending Loan Amount is:" + account.getAccountBalance());
+			}
+		}
+	}
+
+	public static void closeLoan(double customerAmount, Customer customer) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase("Loan Account")) {
+				account.setAccountBalance(customerAmount);
+				System.out.println("Pending Loan Amount is:" + account.getAccountBalance());
+			}
+		}
+	}
+
+	public static void displayLoanDetails(Customer customer) {
+
+		Formatter formatt = new Formatter();
+
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase("Loan Account")) {
+
+				formatt.format("%15s %15s %20s %20s\n", "Customer Name", "Customer Id", "Account Type",
+						"Account Balance");
+				formatt.format("%15s %15s %22s %20s\n", customer.getCustomerName(),
+						customer.getCustomerId().toUpperCase(), account.getProductName(), account.getAccountBalance());
+			}
+		}
+		System.out.println(formatt);
+
+	}
+
+	public static void displaySavingsMaxAccountDetails(Customer customer) {
+
+		Formatter formatt = new Formatter();
+
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase("Savings Max Account")) {
+
+				formatt.format("%15s %15s %20s %20s\n", "Customer Name", "Customer Id", "Account Type",
+						"Account Balance");
+				formatt.format("%15s %15s %22s %20s\n", customer.getCustomerName(),
+						customer.getCustomerId().toUpperCase(), account.getProductName(), account.getAccountBalance());
+			}
+		}
+		System.out.println(formatt);
+
+	}
+
+	public static void displayCurrentAccountDetails(Customer customer) {
+
+		Formatter formatt = new Formatter();
+
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase("Current Account")) {
+
+				formatt.format("%15s %15s %20s %20s\n", "Customer Name", "Customer Id", "Account Type",
+						"Account Balance");
+				formatt.format("%15s %15s %22s %20s\n", customer.getCustomerName(),
+						customer.getCustomerId().toUpperCase(), account.getProductName(), account.getAccountBalance());
+			}
+		}
+		System.out.println(formatt);
+
+	}
+
+	public static void generateAccountStatement() throws FileNotFoundException {
+
+		/*
+		 * PDDocument document=new PDDocument(); PDPage page=new PDPage(); try {
+		 * document.addPage(page);
+		 * document.save("C:\\Users\\rithika.jr\\Desktop\\ILP_UseCaseFiles");
+		 * 
+		 * } catch (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 * 
+		 * System.out.println("pdf created"); try { document.close(); } catch
+		 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 */
+		String path = "C:\\Users\\rithika.jr\\Desktop\\ILP_UseCaseFiles\\accountstatement.pdf";
+		PdfWriter pdfwriter = new PdfWriter(path);
+
+		PdfDocument pdfdocument = new PdfDocument(pdfwriter);
+		pdfdocument.setDefaultPageSize(PageSize.A4);
+		Document document = new Document(pdfdocument);
+		document.add(new Paragraph("Hello"));
+		document.close();
+	}
+}

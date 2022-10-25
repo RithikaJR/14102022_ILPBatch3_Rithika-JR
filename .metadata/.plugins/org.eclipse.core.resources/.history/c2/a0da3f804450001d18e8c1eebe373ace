@@ -1,0 +1,75 @@
+package com.experion.utility;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.experion.entity.Customer;
+
+public class BankUtility {
+
+	public static void main(String[] args) {
+		/*
+		 * Account account = new Account("Women Savings Bank", "ACC1987761", 10000);
+		 * AccountService accountService = new AccountService();
+		 * accountService.depositCash(account, 10000);
+		 * accountService.depositCash(account, 10000, "rty5776");
+		 * accountService.depositCash(account, "rty.com", 10000);
+		 *
+		 */
+
+		Customer customer = null;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("   $$$$$$ Welcome to RBS Banking Services $$$$$$   ");
+		char mainChoice;
+		do
+		{
+		System.out.println("Please make your choice\n1.Create Account\n2.Manage Account\n3.Exit");
+		int choice = scanner.nextInt();
+		switch (choice) {
+		case 1:
+			System.out.println(
+					"We offer the following types of accounts:\n1.Savings Max Account\n2.Current Account\n3.Loan Account\n4.To know more about each account");
+			int choiceOne = scanner.nextInt();
+			switch (choiceOne) {
+			case 1:
+				System.out.println("Enter an id of your choice and your name");
+				String customerId = scanner.nextLine();
+				String customerName = scanner.nextLine();
+				customer = new Customer(customerId, customerName, "Savings Max Account");
+				System.out.println(
+						"Savings Max Account created successfully and account is active!!\nYou have the following services:\nCash Deposit\nATM Withdrawl\nOnline Banking");
+				break;
+			case 2:
+				System.out.println("Enter an id of your choice and your name");
+				String customerId1 = scanner.nextLine();
+				String customerName1 = scanner.nextLine();
+				customer = new Customer(customerId1, customerName1, "Current Account");
+				System.out.println(
+						"Current Account created successfully and account is active\\nYou have the following services:\\nCash Deposit\\nATM Withdrawl\\nOnline Banking\nMobile Banking!!");
+				break;
+			case 3:
+				System.out.println("Enter an id of your choice and your name");
+				String customerId2 = scanner.nextLine();
+				String customerName2 = scanner.nextLine();
+				customer = new Customer(customerId2, customerName2, "Loan Account");
+				System.out.println(
+						"Loan Account created successfully and account is active\\nYou have the following services:\\nCash Deposit\\nCheque Deposit!!");
+				break;
+			case 4:
+				System.out.println("1.Savings Max Account:\n2.Current Account\n3.Loan Account:");
+			}
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+
+		}
+		System.out.println("Do you want to continue?(y/n");
+
+	}while(mainChoice=='y'||mainChoice=='Y');
+	}
+}

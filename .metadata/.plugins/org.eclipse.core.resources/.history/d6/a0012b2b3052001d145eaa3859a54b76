@@ -1,0 +1,146 @@
+package com.bank.service;
+
+import java.util.ArrayList;
+import java.util.Formatter;
+
+import com.bank.entity.Account;
+import com.bank.entity.Customer;
+import com.bank.entity.Product;
+import com.bank.entity.Service;
+
+public class BankService {
+
+	public static ArrayList<Service> createServices() {
+
+		ArrayList<Service> allServiceList = new ArrayList<Service>();
+		allServiceList.add(new Service("Mobile Banking"));
+		allServiceList.add(new Service("ATM Withdrawal"));
+		allServiceList.add(new Service("Cash Deposit"));
+		allServiceList.add(new Service("Cheque Deposit"));
+		allServiceList.add(new Service("Online Banking"));
+
+		return allServiceList;
+
+	}
+
+	public static ArrayList<Product> createProducts(ArrayList<Service> allServiceList) {
+
+		ArrayList<Product> productList = new ArrayList<Product>();
+		productList.add(createSavingsMaxAccount(allServiceList));
+		productList.add(createCurrentAccount(allServiceList));
+		productList.add(createLoanAccount(allServiceList));
+
+		return productList;
+
+	}
+
+	private static Product createLoanAccount(ArrayList<Service> allServiceList) {
+
+		ArrayList<Service> loanServiceList = new ArrayList<Service>();
+		for (Service service : allServiceList) {
+			if ((service.getServiceName().compareTo("Cash Deposit") == 0)
+					|| (service.getServiceName().compareTo("Cheque Deposit") == 0)) {
+				loanServiceList.add(service);
+			}
+		}
+		Product product = new Account("PRDLOAN100", "Loan Account", loanServiceList, 10000);
+		return product;
+
+	}
+
+	private static Product createCurrentAccount(ArrayList<Service> allServiceList) {
+
+		ArrayList<Service> currentServiceList = new ArrayList<Service>();
+		for (Service service : allServiceList) {
+			if ((service.getServiceName().compareTo("Cash Deposit") == 0)
+					|| (service.getServiceName().compareTo("ATM Withdrawal") == 0)
+					|| (service.getServiceName().compareTo("Online Banking") == 0)
+					|| (service.getServiceName().compareTo("Mobile Banking") == 0)) {
+				currentServiceList.add(service);
+			}
+		}
+		Product product = new Account("PRDCRRNT50", "Current Account", currentServiceList, 5000);
+		return product;
+
+	}
+
+	private static Product createSavingsMaxAccount(ArrayList<Service> allServiceList) {
+		ArrayList<Service> savingsMaxServiceList = new ArrayList<Service>();
+		for (Service service : allServiceList) {
+			if ((service.getServiceName().compareTo("Cash Deposit") == 0)
+					|| (service.getServiceName().compareTo("ATM Withdrawal") == 0)
+					|| (service.getServiceName().compareTo("Online Banking") == 0)) {
+				savingsMaxServiceList.add(service);
+			}
+		}
+		Product product = new Account("PRDSMX1000", "Savings Max Account", savingsMaxServiceList, 7000);
+		return product;
+
+	}
+
+	public static void displayCustomerDetails(Customer customer) {
+		if (customer != null) {
+			Formatter formatt = new Formatter();
+			formatt.format("%15s %15s %20s %20s\n", "Customer Name", "Customer Id", "Account Type", "Account Balance");
+			// System.out.println("Customer Name\tCustomer Id\tAccount Type\tAccount
+			// Balance");
+			for (Account account : customer.getAccountList()) {
+				formatt.format("%15s %15s %22s %20s\n", customer.getCustomerName(), customer.getCustomerId(),
+						account.getProductName(), account.getAccountBalance());
+			}
+			System.out.println(formatt);
+		} else
+			System.out.println("No accounts to display!");
+
+	}
+
+	public static void depositMoney(double customerAmount, Customer customer, String customerChoice) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase(customerChoice)) {
+
+				account.setAccountBalance(account.getAccountBalance() + customerAmount);
+				System.out.println("Account Balance is:" + account.getAccountBalance());
+			} else if (account.getProductName().equalsIgnoreCase(customerChoice)) {
+
+				account.setAccountBalance(account.getAccountBalance() + customerAmount);
+				System.out.println("Account Balance is:" + account.getAccountBalance());
+
+			}
+		}
+
+	}
+
+	public static void withdrawMoney(double customerAmount, Customer customer, String customerChoice) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase(customerChoice)) {
+
+				account.setAccountBalance(account.getAccountBalance() - customerAmount);
+				System.out.println("Account Balance is:" + account.getAccountBalance());
+			} else if (account.getProductName().equalsIgnoreCase(customerChoice)) {
+
+				account.setAccountBalance(account.getAccountBalance() - customerAmount);
+				System.out.println("Account Balance is:" + account.getAccountBalance());
+
+			}
+		}
+
+	}
+
+	public static void loanPrinciple(double customerAmount, Customer customer) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase("Loan Account")) {
+
+				account.setAccountBalance(account.getAccountBalance() - customerAmount);
+				System.out.println("Account Balance is:" + account.getAccountBalance());
+			}
+		}
+	}
+
+	public static void closeLoan(double customerAmount, Customer customer) {
+		for (Account account : customer.getAccountList()) {
+			if (account.getProductName().equalsIgnoreCase("Loan Account")) {
+				account.setAccountBalance(customerAmount);
+			}
+		}
+	}
+}

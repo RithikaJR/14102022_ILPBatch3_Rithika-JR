@@ -1,0 +1,11 @@
+package com.experion.utility;
+
+import com.experion.entity.Account;
+
+public class ProductUtility {
+
+	public static void main(String[] args) {
+		Account account=new Account("Women Savings Bank","ACC1987761",10000);
+
+	}
+}

@@ -1,0 +1,389 @@
+package com.bank.utility;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.bank.entity.Account;
+import com.bank.entity.Customer;
+import com.bank.entity.Product;
+import com.bank.entity.Service;
+import com.bank.service.BankService;
+
+public class BankUtility {
+
+	public static void main(String[] args) {
+
+		ArrayList<Product> productList = new ArrayList<Product>();
+		ArrayList<Service> allServicesList = new ArrayList<Service>();
+		ArrayList<Account> accountList = new ArrayList<Account>();
+		allServicesList = BankService.createServices();
+		productList = BankService.createProducts(allServicesList);
+
+		Customer customer = null;
+		Scanner scanner = new Scanner(System.in);
+		String customerId, customerName;
+		System.out.println("   $$$$$$ Welcome to RBS Banking Services $$$$$$   \n\n");
+		char mainChoice;
+
+		int savingsTracker = 0;
+		int currentTracker = 0;
+		int loanTracker = 0;
+
+		do {
+			System.out.println("****MAIN MENUE****\n\nPlease make your choice\n1.Create Account\n2.Manage Account\n3."
+					+ "Display Account\n4.Generate Account Statement\n5.exit");
+			int choice = scanner.nextInt();
+
+			switch (choice) {
+			case 1:
+				System.out
+						.println("We offer the following types of accounts:\n1.Savings Max Account\n2.Current Account\n"
+								+ "3.Loan Account\n4.To know more about each account");
+				int choiceOne = scanner.nextInt();
+
+				scanner.nextLine();
+				switch (choiceOne) {
+				case 1:
+					if (customer == null) {
+
+						savingsTracker++;
+
+						System.out.println("Enter an id of your choice and your name");
+						customerId = scanner.nextLine();
+						customerName = scanner.nextLine();
+						for (Product product : productList) {
+							if (product.getProductName().equalsIgnoreCase("Savings Max Account")) {
+
+								accountList.add((Account) product);
+
+							}
+						}
+
+						customer = new Customer(customerName, customerId, accountList);
+						System.out.println(
+								"Savings Max Account created successfully and account is active!!\nYou have the following services:\n");
+						for (Product product : productList) {
+							if (product.getProductName().equalsIgnoreCase("Savings Max Account")) {
+								for (Service service : product.getServiceList()) {
+									System.out.println(service.getServiceName());
+								}
+							}
+
+						}
+					}
+
+					else {
+
+						if (savingsTracker != 0)
+							System.out.println("Account already exist.Cannot create account with same customer Id");
+						else {
+							savingsTracker++;
+							System.out.println(
+									"Savings Max Account created successfully and account is active!!\nYou have the following services:\n");
+							for (Product product : productList) {
+								if (product.getProductName().equalsIgnoreCase("Savings Max Account")) {
+									for (Service service : product.getServiceList()) {
+										System.out.println(service.getServiceName());
+									}
+								}
+
+							}
+							for (Product product : productList) {
+								if (product.getProductName().equalsIgnoreCase("Savings Max Account")) {
+
+									accountList.add((Account) product);
+
+								}
+							}
+						}
+
+					}
+
+					break;
+
+				case 2:
+					if (customer == null) {
+						currentTracker++;
+						System.out.println("Enter an id of your choice and your name");
+						customerId = scanner.nextLine();
+						scanner.nextLine();
+						customerName = scanner.nextLine();
+						for (Product product : productList) {
+							if (product.getProductName().equalsIgnoreCase("Current Account")) {
+
+								accountList.add((Account) product);
+
+							}
+						}
+
+						customer = new Customer(customerName, customerId, accountList);
+						System.out.println(
+								"Current Account created successfully and account is active!!\nYou have the following services:\n");
+						for (Product product : productList) {
+							if (product.getProductName().equalsIgnoreCase("Current Account")) {
+								for (Service service : product.getServiceList()) {
+									System.out.println(service.getServiceName());
+								}
+							}
+
+						}
+					}
+
+					else {
+
+						if (currentTracker != 0)
+							System.out.println("Account already exist.Cannot create account with same customer Id");
+						else {
+							currentTracker++;
+							for (Product product : productList) {
+								if (product.getProductName().equalsIgnoreCase("Current Account")) {
+
+									accountList.add((Account) product);
+
+								}
+							}
+							System.out.println(
+									"Current Account created successfully and account is active!!\nYou have the following services:\n");
+							for (Product product : productList) {
+								if (product.getProductName().equalsIgnoreCase("Current Account")) {
+									for (Service service : product.getServiceList()) {
+										System.out.println(service.getServiceName());
+									}
+								}
+
+							}
+
+						}
+					}
+
+					break;
+
+				case 3:
+					if (customer == null) {
+						loanTracker++;
+						System.out.println("Enter an id of your choice and your name");
+						customerId = scanner.nextLine();
+
+						customerName = scanner.nextLine();
+						for (Product product : productList) {
+							if (product.getProductName().equalsIgnoreCase("Loan Account")) {
+
+								accountList.add((Account) product);
+
+							}
+						}
+
+						customer = new Customer(customerName, customerId, accountList);
+						System.out.println(
+								"Loan Account created successfully and account is active!!\nYou have the following services:\n");
+						for (Product product : productList) {
+							if (product.getProductName().equalsIgnoreCase("Loan Account")) {
+								for (Service service : product.getServiceList()) {
+									System.out.println(service.getServiceName());
+								}
+							}
+
+						}
+
+					}
+
+					else {
+
+						if (loanTracker != 0)
+							System.out.println("Account already exist.Cannot create account with same customer Id");
+						else {
+							loanTracker++;
+							for (Product product : productList) {
+								if (product.getProductName().equalsIgnoreCase("Loan Account")) {
+
+									accountList.add((Account) product);
+
+								}
+							}
+							System.out.println(
+									"Loan Account created successfully and account is active!!\nYou have the following services:\n");
+							for (Product product : productList) {
+								if (product.getProductName().equalsIgnoreCase("Loan Account")) {
+									for (Service service : product.getServiceList()) {
+										System.out.println(service.getServiceName());
+									}
+								}
+
+							}
+						}
+
+					}
+
+					break;
+				case 4:
+					System.out.println(
+							"*******SAVINGS MAX ACCOUNT*********\nSavingsMax account helps you save big up to Rs. 12,500 every year. \nIf you are a savings account holder, "
+									+ "you can receive a total insurance cover of up to Rs. 1.29 crores. \nYou will also get a free Platinum Debit Card "
+									+ "that can earn you a cashback of up to 1% on purchases.\n*******CURRENT ACCOUNT*********\n"
+									+ "Current bank account is opened by businessmen who have a higher number of regular "
+									+ "transactions with the bank. \nIt includes deposits, withdrawals, and contra transactions."
+									+ " \nIt is also known as Demand Deposit Account.\n*******LOAN ACCOUNT*********\n"
+									+ "A bank account that is set up as a repayment method for a customer who has been given "
+									+ "a bank loan.");
+					break;
+				}
+				break;
+
+			case 2:
+
+				String accountChoice;
+				char innerChoice;
+				scanner.nextLine();
+				if (customer == null) {
+					System.out.println("No accounts exist.Please create account.");
+
+				} else {
+					int serviceChoice;
+					double customerAmount;
+					System.out.println("Enter customer id");
+					customerId = scanner.nextLine();
+					System.out.println(customer.getCustomerName() + " has the following accounts:\n");
+					for (Account account : customer.getAccountList()) {
+						System.out.println(account.getProductName());
+					}
+
+					do {
+						scanner.nextLine();
+						System.out.println("Enter the name of account you want to manage:");
+						accountChoice = scanner.nextLine();
+
+						switch (accountChoice) {
+						case "Savings Max Account":
+							System.out.println(
+									"****MANAGING OPTIONS******\n1.Deposit\n2.Withdraw\n3.Display\nPlease enter your choice");
+							serviceChoice = scanner.nextInt();
+							switch (serviceChoice) {
+							case 1:
+								for (Account account : customer.getAccountList()) {
+									if (account.getProductName().equalsIgnoreCase("Savings Max Account"))
+										System.out.println("Your Account balance is: " + account.getAccountBalance());
+								}
+								System.out.println("Enter amount to be deposited");
+								customerAmount = scanner.nextDouble();
+								System.out.println("Amount deposited successfully!");
+								BankService.depositMoney(customerAmount, customer, accountChoice);
+
+								break;
+							case 2:
+								for (Account account : customer.getAccountList()) {
+									if (account.getProductName().equalsIgnoreCase("Savings Max Account"))
+										System.out.println("Your Account balance is: " + account.getAccountBalance());
+								}
+								System.out.println("Enter amount to be withdrawn");
+								customerAmount = scanner.nextDouble();
+								System.out.println("Amount withdrawn successfully!");
+								BankService.withdrawMoney(customerAmount, customer, accountChoice);
+
+								break;
+							case 3:
+								BankService.displaySavingsMaxAccountDetails(customer);
+
+								break;
+							}
+							break;
+						case "Current Account":
+							System.out.println("1.Deposit\n2.Withdraw\n3.Display\nPlease enter your choice");
+							serviceChoice = scanner.nextInt();
+							switch (serviceChoice) {
+							case 1:
+								for (Account account : customer.getAccountList()) {
+									if (account.getProductName().equalsIgnoreCase("Current Account"))
+										System.out.println("Your Account balance is: " + account.getAccountBalance());
+								}
+								System.out.println("Enter amount to be deposited");
+								customerAmount = scanner.nextDouble();
+								System.out.println("Amount deposited successfully!");
+								BankService.depositMoney(customerAmount, customer, accountChoice);
+
+								break;
+							case 2:
+								for (Account account : customer.getAccountList()) {
+									if (account.getProductName().equalsIgnoreCase("Current Account"))
+										System.out.println("Your Account balance is: " + account.getAccountBalance());
+								}
+								System.out.println("Enter amount to be withdrawn");
+								customerAmount = scanner.nextDouble();
+								System.out.println("Amount withdrawn successfully!");
+								BankService.withdrawMoney(customerAmount, customer, accountChoice);
+
+								break;
+							case 3:
+								BankService.displayCurrentAccountDetails(customer);
+
+								break;
+							}
+
+							break;
+						case "Loan Account":
+							System.out.println(
+									"1.Pay principle amount\n2.Close Loan\n3.Display\nPlease enter your choice");
+							serviceChoice = scanner.nextInt();
+							switch (serviceChoice) {
+							case 1:
+								for (Account account : customer.getAccountList()) {
+									if (account.getProductName().equalsIgnoreCase("Loan Account"))
+										System.out.println("Your Account balance is: " + account.getAccountBalance());
+								}
+								System.out.println("Enter principle amount to be updated");
+								customerAmount = scanner.nextDouble();
+								System.out.println("Principle Amount deducted from loan");
+								BankService.loanPrinciple(customerAmount, customer);
+
+								break;
+							case 2:
+								System.out.println("Loan closed successfully");
+								BankService.closeLoan(0, customer);
+
+								break;
+							case 3:
+								BankService.displayLoanDetails(customer);
+								scanner.nextLine();
+								break;
+							}
+
+							break;
+						default:
+							System.out.println("Invalid choice or account does not exist");
+							break;
+						}
+
+						System.out.println(
+								"If you want to further continue managing accounts press 'y'  or press any key to return to main menue");
+						innerChoice = scanner.next().charAt(0);
+
+					} while (innerChoice == 'y' || innerChoice == 'Y');
+				}
+				break;
+			case 3:
+				BankService.displayCustomerDetails(customer);
+
+				break;
+			case 4:
+				try {
+					BankService.generateAccountStatement();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 5:
+				System.out.println("Thanks for visiting:)");
+				System.exit(0);
+				break;
+
+			}
+
+			System.out.println("Do you want to continue with main menue?(y/n)");
+			mainChoice = scanner.next().charAt(0);
+
+		} while (mainChoice == 'y' || mainChoice == 'Y');
+		System.out.println("Thanks for visiting!!\nHope you had a good experience:)");
+	}
+}

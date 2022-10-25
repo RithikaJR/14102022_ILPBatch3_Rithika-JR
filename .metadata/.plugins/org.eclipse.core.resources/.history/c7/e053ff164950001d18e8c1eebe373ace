@@ -1,0 +1,60 @@
+package com.experion.entity;
+
+import com.experion.service.SavingsCurrentServices;
+
+public class SavingsMaxAccount extends Account implements SavingsCurrentServices  {
+
+	private double savingsMaxAmount;
+
+	public SavingsMaxAccount(String accountName, String accountNumber, double accountBalance,
+			double savingsMaxAmount) {
+		super(accountName, accountNumber, accountBalance);
+		this.savingsMaxAmount = savingsMaxAmount;
+	}
+
+	
+	public double getSavingsMaxAmount() {
+		return savingsMaxAmount;
+	}
+
+
+	public void setSavingsMaxAmount(double savingsMaxAmount) {
+		this.savingsMaxAmount = accountBalance;
+	}
+
+
+	@Override
+	public void cashDeposit() {
+		
+		double accountBalance=-super.getAccountBalance();
+		accountBalance+=savingsMaxAmount;
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void atmWithdrawal() {
+		double accountBalance=-super.getAccountBalance();
+		accountBalance-=savingsMaxAmount;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onlineBanking() {
+		
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+
+
+
+	
+
+	
+
+}

@@ -1,0 +1,40 @@
+package com.ilp.assignment1;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class DescendingOrder1 {
+
+	public static void main(String[] args) {
+		int numberOne;
+		int numberTwo;
+		int numberThree;
+
+		Scanner scanner = new Scanner(System.in);
+		
+
+		System.out.println("Enter the 3 numbers");
+		
+			numberOne = scanner.nextInt();
+			numberTwo = scanner.nextInt();
+			numberThree = scanner.nextInt();
+		
+
+		System.out.println("The numbers before sorting");
+		for (int temperoryNumber : numbers) {
+			System.out.print(temperoryNumber + "     ");
+
+		}
+
+		Arrays.sort(numbers);
+
+		System.out.println("\nThe numbers after sorting in descending order");
+		for (int count = (numbers.length) - 1; count >= 0; count--) {
+			System.out.print(numbers[count] + "    ");
+		}
+
+		// TODO Auto-generated method stub
+
+	}
+
+}

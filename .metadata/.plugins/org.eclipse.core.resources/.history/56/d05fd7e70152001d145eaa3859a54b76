@@ -1,0 +1,43 @@
+package com.ilp.assignment1;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Scanner;
+
+public class BasicProgrammingQuestion20 {
+
+	public static void main(String[] args) throws Exception {
+		System.out.println(
+				"\n***** PROGRAM TO ENTER PRODUCT DETAILS AND COMPARE PURCHASE DATE WITH VALIDITY DATE:******* \n\n");
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter Product Code - ");
+		String productCode = scanner.nextLine();
+		System.out.println("Enter Product Name - ");
+		String productName = scanner.nextLine();
+		System.out.println("Enter Product Price - ");
+		double productPrice = scanner.nextDouble();
+		scanner.nextLine();
+		System.out.println("Enter Product Valdity Date - ");
+		String validityDate = scanner.nextLine();
+		System.out.println("Enter Product Expiry Date - ");
+		String expiryDate = scanner.nextLine();
+
+		LocalDate date = LocalDate.now();
+		SimpleDateFormat formatt = new SimpleDateFormat("dd/mm/yyyy");
+		String string = formatt.format(date);
+		Date dateEntered = new SimpleDateFormat("dd/mm/yyyy").parse(string);
+
+		Date dateValid = new SimpleDateFormat("dd/MM/yyyy").parse(validityDate);
+		Date dateExpiry = new SimpleDateFormat("dd/MM/yyyy").parse(expiryDate);
+		System.out.println(dateEntered);
+		if (dateEntered.compareTo(dateValid) <= 0)
+			System.out.println("Purchase success!!");
+		else
+			System.out.println("Purchase not successful");
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;itext7-core&apos;" deleteContents="false" description="Delete resource &apos;itext7-core&apos;" element1="/itext7-core" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1666535751453"/>&#x0A;<refactoring comment="Rename resource &apos;root&apos; to &apos;BankingUtility_UseCase&apos;" description="Rename resource &apos;root&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/root" name="BankingUtility_UseCase" stamp="1666539872375" updateReferences="true"/>
+</session>

@@ -1,0 +1,11 @@
+package com.experion.entity;
+
+import java.util.ArrayList;
+
+public class Customer {
+	
+	private String customerId;
+	private String customerName;
+	ArrayList<Customer> accountType=new ArrayList<Customer>();
+
+}

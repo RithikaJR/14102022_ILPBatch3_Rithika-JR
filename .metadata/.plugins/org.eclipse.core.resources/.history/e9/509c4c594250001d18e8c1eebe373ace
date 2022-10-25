@@ -1,0 +1,39 @@
+package com.experion.utility;
+
+import java.util.Scanner;
+
+import com.experion.entity.Account;
+import com.experion.entity.SavingsMaxAccount;
+import com.experion.entity.LoanAccount;
+import com.experion.entity.Product;
+
+public class BankUtility {
+
+	public static void main(String[] args) {
+		/*
+		 * Account account = new Account("Women Savings Bank", "ACC1987761", 10000);
+		 * AccountService accountService = new AccountService();
+		 * accountService.depositCash(account, 10000);
+		 * accountService.depositCash(account, 10000, "rty5776");
+		 * accountService.depositCash(account, "rty.com", 10000);
+		 */
+		Account account = null;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("1.Account    2.Card      3.Loan");
+		int choice = scanner.nextInt();
+		switch (choice) {
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			
+			break;
+
+		}
+		
+
+	}
+}

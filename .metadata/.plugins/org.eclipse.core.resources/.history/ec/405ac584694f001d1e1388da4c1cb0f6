@@ -1,0 +1,24 @@
+package com.experion.service;
+
+import com.experion.entity.Product;
+
+public class Service {
+	
+	public static Product createCardProduct() {
+		
+		
+		Product product=new Card("PRDMC100","Master Card","Card","Master");
+		return product;
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void createAccountProduct() {
+		// TODO Auto-generated method stub
+		
+	}
+	public static void buyProduct() {
+		// TODO Auto-generated method stub
+		
+	}
+}
